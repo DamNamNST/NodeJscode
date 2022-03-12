@@ -1,19 +1,14 @@
 const { Router } = require('express');
+const { list, get } = require('../controllers/product');
 const { checkAuth } = require('../middlewares/checkAuth')
+
 
 const router = Router();
 
-//fake data
-const products = [{id: 1,name: "Product A",},{id: 2,name: "Product B",},];
 
 
-router.get("/products", checkAuth, (req, res) => {//get all items
-  res.json(products);
-})
-router.get("/product/:id", (req, res) => { // get a product
-      const result = products.find(item => item.id === +req.params.id);
-      res.json(result);
-  });
+router.get("/products", checkAuth, list)
+router.get("/product/:id", get);
 router.post("/products", checkAuth, (req, res) => {// create product
   products.push(req.body);
   res.json(products);
