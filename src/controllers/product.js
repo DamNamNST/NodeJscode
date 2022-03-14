@@ -40,8 +40,9 @@ export const create = async (req, res) => { // create product
   }
 }
 export const remove = async (req, res) => { // delete product
+  //console.log('11')
   try {
-    const products = await Product.findOneAndDelete({ _id: res.params.id }).exec();
+    const products = await Product.findOneAndDelete({ _id: req.params.id }).exec();
     res.json(products);
   } catch (error) {
     res.status(400).json({
@@ -52,7 +53,7 @@ export const remove = async (req, res) => { // delete product
   // res.json(newProducts);
 }
 export const update = async (req, res) => { // update product
-  const condition = { _id: res.params.id };
+  const condition = { _id: req.params.id };
   const update = req.body;
   const optional = { new: true };
 

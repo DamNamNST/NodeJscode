@@ -2,10 +2,11 @@
 import express from 'express';
 import productRouter from './routes/product';
 import mongoose from 'mongoose';
+import morgan from 'morgan'
 const app = express();
 // middleware
 app.use(express.json());
-
+app.use(morgan('tiny'))
 // Routing
 app.use("/api", productRouter);
 //database
