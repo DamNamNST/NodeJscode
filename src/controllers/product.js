@@ -1,9 +1,10 @@
-import mongoose from "mongoose";
-const Product = mongoose.model('Product', { name: String });
+// import mongoose from "mongoose";
+// const Product = mongoose.model('Product', { name: String });
 
 //fake data
 //const products = [{ id: 1, name: "Product A", }, { id: 2, name: "Product B", },];
 
+import Product from "../models/product";
 
 export const list = async (req, res) => {//get all items
   //
