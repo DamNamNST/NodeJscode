@@ -1,7 +1,7 @@
 // const express = require("express");
 import express from 'express';
 import productRouter from './routes/product';
-import mongoose from mongoose;
+import mongoose from 'mongoose';
 const app = express();
 // middleware
 app.use(express.json());
@@ -9,7 +9,7 @@ app.use(express.json());
 // Routing
 app.use("/api", productRouter);
 //database
-mongoose.connect('mongodb://localhost:27017/we16')
+mongoose.connect('mongodb://127.0.0.1:27017/we16')
 .then(() => console.log("Connect db thanh cong"))
 // Connect
 const PORT = 3001;
