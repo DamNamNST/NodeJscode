@@ -5,6 +5,8 @@
 //const products = [{ id: 1, name: "Product A", }, { id: 2, name: "Product B", },];
 
 import Product from "../models/product";
+import slugify from "slugify";
+
 
 export const list = async (req, res) => {//get all items
   //
@@ -31,6 +33,7 @@ export const get = async (req, res) => { // get a product
   //res.json(result);
 }
 export const create = async (req, res) => { // create product
+  req.body.slug = slugify(req.body.name);
   try {
     const product = await new Product(req.body).save();
     res.json(product);

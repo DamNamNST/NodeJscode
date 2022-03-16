@@ -28,6 +28,7 @@
   "dependencies": {
     "express": "^4.17.3",
     "expresss": "^0.0.0",
-    "mongoose": "^6.2.5"
+    "mongoose": "^6.2.5",
+    "slugify": "^1.6.5"
   }
 }
