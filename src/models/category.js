@@ -7,13 +7,14 @@ const categorySchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: 5
+    trim: true
   },
   slug: {
     type: String,
-    minlength: 5,
-    lowercase: true
+    lowercase: true,
+    unique: true,
+    index: true
   },
 
-})
+}, { timestamps: true });
 export default mongoose.model('Category', categorySchema);

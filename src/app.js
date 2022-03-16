@@ -3,15 +3,17 @@ import express from 'express';
 import productRouter from './routes/product';
 import mongoose from 'mongoose';
 import morgan from 'morgan'
+import categoryRouter from './routes/category';
 const app = express();
 // middleware
 app.use(express.json());
 app.use(morgan('tiny'))
 // Routing
 app.use("/api", productRouter);
+app.use("/api", categoryRouter);
 //database
 mongoose.connect('mongodb://localhost:27017/we16')
-.then(() => console.log("Connect db thanh cong"))
+  .then(() => console.log("Connect db thanh cong"))
 // Connect
 const PORT = 3001;
 app.listen(PORT, () => {
@@ -22,7 +24,7 @@ app.listen(PORT, () => {
 // const productRouter = require('./routes/product')
 // const app = express();
 // //middleware
-// app.use(express.json());//kiểm tra dữ liệu gửi lên 
+// app.use(express.json());//kiểm tra dữ liệu gửi lên
 
 // const baoVe = (req, res, next) => {
 //   const sinhVien = true;
@@ -53,14 +55,14 @@ app.listen(PORT, () => {
 // // })
 
 
-// //code thuần: 
+// //code thuần:
 // // const http = require('http');
 // // //tạo server
 // // const server = http.createServer((req, res) => { //2 tham số dạng hàm nha (object)
 // //   console.log("Chạy server thành công");
 // //   //hiển thị ra requests của trình duyệt : req
 // //   console.log("req", req.url);
-// //   //hiển thị url của trình duyệt 
+// //   //hiển thị url của trình duyệt
 // //   const url = req.url;
 // //   //thử gán cho url :
 // //   //   if(url === '/product'){
@@ -129,7 +131,7 @@ app.listen(PORT, () => {
 // //   }
 // // });
 
-// const PORT = 3002;//tùy biến cổng 
+// const PORT = 3002;//tùy biến cổng
 
 // //chạy server ở PORT
 // app.listen(PORT, () => {

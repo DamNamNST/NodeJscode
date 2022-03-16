@@ -29,7 +29,7 @@ const productSchema = mongoose.Schema({
     type: ObjectId,
 
   }
-  
+
   //   product
   //  - name: string
   //  - slug: string
