@@ -22,7 +22,7 @@ export const list = async (req, res) => {//get all items
 
 export const get = async (req, res) => { // get a product
   try {
-    const products = await Product.findOne({ _id: res.params.id }).exec();
+    const products = await Product.findOne({ _id: req.params.id }).exec();
     res.json(products);
   } catch (error) {
     res.status(400).json({

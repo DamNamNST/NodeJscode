@@ -30,16 +30,6 @@ const productSchema = mongoose.Schema({
 
   }
 
-  //   product
-  //  - name: string
-  //  - slug: string
-  //  - description : string
-  //  - price: number
-  //  - category
-  //  - shipping
-  // category
-  // - name: string
-  // - slug: string
 }, { timestamps: true });
 
 export default mongoose.model('Product', productSchema);

@@ -27,7 +27,7 @@ export const read = async (req, res) => { // get all items from cate
   try {
     const category = await Category.findOne({ slug: req.params.slug }).exec();
     const products = await Product.find({ category: category }).populate('category').select('-category').exec();
-    console.log(products);
+    //console.log(products);
     res.json({ category, products });
   } catch (error) {
     res.status(400).json({
