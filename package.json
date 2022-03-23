@@ -26,9 +26,12 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "express": "^4.17.3",
     "expresss": "^0.0.0",
     "mongoose": "^6.2.5",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.12"
   }
 }
