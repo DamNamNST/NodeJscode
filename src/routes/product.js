@@ -1,17 +1,17 @@
 const { Router } = require('express');
 const { list, get, create, remove, update } = require('../controllers/product');
-const { checkAuth } = require('../middlewares/checkAuth')
+const { checkAuth, requireSignin, isAuth } = require('../middlewares/checkAuth')
 
 
 const router = Router();
 
 
 
-router.get("/products", checkAuth, list);
-router.get("/product/:id", get);
-router.post('/products', checkAuth, create);
-router.delete("/product/:id", remove);
-router.put("/product/:id", update)
+router.get("/products", list);//lấy danh sách
+router.get("/product/:id", get);//lấy 1 sản phẩm
+router.post('/products', requireSignin, isAuth, create);//thêm mới
+router.delete("/product/:id", remove);//xóa 1
+router.put("/product/:id", update)//sửa 1
 
 module.exports = router;
 // router.get("/products", checkAuth, list)
