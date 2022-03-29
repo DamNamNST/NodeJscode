@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { list, get, create, remove, update } = require('../controllers/product');
-const { checkAuth, requireSignin, isAuth } = require('../middlewares/checkAuth')
+const { userById } = require('../controllers/user');
+const { checkAuth, requireSignin, isAuth, isAdmin } = require('../middlewares/checkAuth')
 
 
 const router = Router();
@@ -9,9 +10,12 @@ const router = Router();
 
 router.get("/products", list);//lấy danh sách
 router.get("/product/:id", get);//lấy 1 sản phẩm
-router.post('/products', requireSignin, isAuth, create);//thêm mới
+router.post('/products/:userId', requireSignin, isAuth, isAdmin, create);//thêm mới
 router.delete("/product/:id", remove);//xóa 1
 router.put("/product/:id", update)//sửa 1
+
+
+router.param("userId", userById)
 
 module.exports = router;
 // router.get("/products", checkAuth, list)

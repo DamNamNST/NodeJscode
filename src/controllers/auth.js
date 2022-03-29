@@ -31,17 +31,18 @@ export const signin = async (req, res) => {
     //ktra email có tồn tại chưa 
     const user = await User.findOne({email}).exec();
     if(!user){
-        res.status(401).json({
+        res.status(400).json({
             message: "User khong ton tai"
         })
     }
     if(!user.authenticate(password)){
-        res.status(401).json({
+        res.status(400).json({
             message: "Mat khau khong dung"
         })
     }
-    //mã hóa
+    //thêm token
     const token = jwt.sign({email}, "123456", { expiresIn: 60 * 60 });
+    //console.log(token);
     res.json({
         token,
         user: {
