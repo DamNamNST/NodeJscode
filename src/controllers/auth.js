@@ -8,7 +8,8 @@ export const signup = async (req, res) => {
     //ktra email có tồn tại chưa 
     const existUser = await User.findOne({ email }).exec()
     if (existUser) {
-      res.json({
+      return res.status(400).json({
+        
         message: "Email đã tồn tại, vui lòng thử lại :(("
       })
     }
@@ -41,8 +42,9 @@ export const signin = async (req, res) => {
         })
     }
     //thêm token
-    const token = jwt.sign({email}, "123456", { expiresIn: 60 * 60 });
+    const token = jwt.sign({_id: user._id}, "123456", { expiresIn: "1h" });
     //console.log(token);
+    //trả về kết quả trển response
     res.json({
         token,
         user: {

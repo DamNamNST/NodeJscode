@@ -9,9 +9,13 @@ import slugify from "slugify";
 
 
 export const list = async (req, res) => {//get all items
-  //
+  //set limit trên trang
+  const limitNumber = 3;
+  const limit = req.query.limit ? +req.query.limit: limitNumber;
+  const sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+  const order = req.query.order ? req.query.order : 'desc';
   try {
-    const products = await Product.find().exec();
+    const products = await Product.find().limit(limit).exec();
     res.json(products);
   } catch (error) {
     res.status(400).json({
