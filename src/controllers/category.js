@@ -15,7 +15,7 @@ export const create = async (req, res) => { // create category
 }
 export const list = async (req, res) => { // get all categories
   try {
-    const categories = await Category.find().exec();
+    const categories = await Category.find().sort({ createAt: -1 }).exec();
     res.json(categories);
   } catch (error) {
     res.status(400).json({
@@ -35,4 +35,26 @@ export const read = async (req, res) => { // get all items from cate
     })
   }
 }
-
+export const update = async (req, res) => { // update cat
+  const condition = { slug: req.params.slug };
+  const update = req.body;
+  const optional = { new: true };
+  try {
+    const category = await Category.findOneAndUpdate(condition, update, optional).exec();
+    res.json(category);
+  } catch (error) {
+    res.status(400).json({
+      message: " không thành công"
+    })
+  }
+}
+export const remove = async (req, res) => { // delete one  
+  try {
+    const category = await Category.findOneAndDelete({ slug: req.params.slug }).exec();
+    res.json(category);
+  } catch (error) {
+    res.status(400).json({
+      message: " không thành công"
+    })
+  }
+}

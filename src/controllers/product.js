@@ -1,9 +1,3 @@
-// import mongoose from "mongoose";
-// const Product = mongoose.model('Product', { name: String });
-
-//fake data
-//const products = [{ id: 1, name: "Product A", }, { id: 2, name: "Product B", },];
-
 import Product from "../models/product";
 import slugify from "slugify";
 
@@ -33,8 +27,6 @@ export const get = async (req, res) => { // get a product
       message: " không thành công"
     })
   }
-  //const result = products.find(item => item.id === +req.params.id);
-  //res.json(result);
 }
 export const create = async (req, res) => { // create product
   req.body.slug = slugify(req.body.name);
@@ -54,11 +46,9 @@ export const remove = async (req, res) => { // delete product
     res.json(products);
   } catch (error) {
     res.status(400).json({
-      message: " không thành công"
+      message: "xóa không thành công"
     })
   }
-  // const newProducts = products.filter(item => item.id !== +req.params.id);
-  // res.json(newProducts);
 }
 export const update = async (req, res) => { // update product
   const condition = { _id: req.params.id };
@@ -70,9 +60,7 @@ export const update = async (req, res) => { // update product
     res.json(products);
   } catch (error) {
     res.status(400).json({
-      message: " không thành công"
+      message: "sửa không thành công"
     })
   }
-  // const newProducts = products.map(item => item.id === +req.params.id ? req.body : item)
-  // res.json(newProducts);
 }

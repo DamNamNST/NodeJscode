@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
   },
   slug: {
     type: String,
-    minlength: 5,
+    unique: true,
     lowercase: true
   },
   description: {
@@ -25,10 +25,17 @@ const productSchema = mongoose.Schema({
 
   },
   shipping: {
-    type: ObjectId,
-
+    type: String,
+    enum: ["yes", "no"]
+  },
+  color: {
+    type: String,
+    enum: ["Black", "Brown", "Silver", "White", "Blue"]
+  },
+  brand: {
+    type: String,
+    enum: ["Apple", "Samsung", "Lenovo", "Asus"]
   }
-
 }, { timestamps: true });
 
 export default mongoose.model('Product', productSchema);

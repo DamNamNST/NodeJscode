@@ -1,6 +1,7 @@
 import User from '../models/user';
 export const userById = async (req, res, next, id) => {
   try {
+    //tìm user theo id 
     const user = await User.findById(id).exec();
     if (!user) {
       res.status(400).json({

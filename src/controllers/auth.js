@@ -44,40 +44,22 @@ export const signin = async (req, res) => {
     //thêm token
     const token = jwt.sign({_id: user._id}, "123456", { expiresIn: "1h" });
     //console.log(token);
+    //thêm cookies
+    res.cookie('token',token,{expire: new Date() + 9999})
     //trả về kết quả trển response
     res.json({
         token,
         user: {
             _id: user._id,
             email: user.email,
-            name: user.name
+            name: user.name,
+            role: user.role
         }
     })
 }
-
-// }
-// import User from '../models/user';
-// import jwt from 'jsonwebtoken';
-
-// export const signup = async (req, res) => {
-//     const { email, name, password} = req.body;
-//     try {
-//         // kiem tra user co ton tai khong?
-//         const existUser = await User.findOne({email}).exec();
-//         if(existUser){
-//             res.json({
-//                 message: "User da ton tai"
-//             })
-//         }
-//         const user = await new User({email, name, password}).save();
-//         res.json({
-//             user: {
-//                 _id: user._id,
-//                 email: user.email,
-//                 name: user.name
-//             }
-//         })
-//     } catch (error) {
-        
-//     }
-// }
+export const signout = (req,res) =>{
+  res.clearCookie('token');
+  res.json({
+    message: "Đăng xuất thành công :<"
+  })
+}

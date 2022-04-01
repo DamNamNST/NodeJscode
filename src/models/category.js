@@ -1,9 +1,6 @@
 import mongoose from "mongoose";
 
 const categorySchema = mongoose.Schema({
-  // category
-  // - name: string
-  // - slug: string
   name: {
     type: String,
     required: true,
