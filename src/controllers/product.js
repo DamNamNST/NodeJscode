@@ -51,8 +51,11 @@ export const remove = async (req, res) => { // delete product
   }
 }
 export const update = async (req, res) => { // update product
+  //điều kiện
   const condition = { _id: req.params.id };
+  //dữ liệu
   const update = req.body;
+  //tùy chọn 
   const optional = { new: true };
 
   try {

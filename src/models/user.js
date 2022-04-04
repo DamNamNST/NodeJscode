@@ -26,9 +26,11 @@ const userSchema = new Schema({
 }, { timestamps: true });
 
 userSchema.methods = {
+    //login
     authenticate(password) { //123456
         return this.password == this.encrytPassword(password);
     },
+    //mã hóa mật khẩu 
     encrytPassword(password) {
         if (!password) return
         try {

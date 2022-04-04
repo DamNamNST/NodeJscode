@@ -9,6 +9,7 @@ export const userById = async (req, res, next, id) => {
       })
     }
     req.profile = user;
+    //pảo mật thông tin thì nên set pass và salt là undefined
     req.profile.password = undefined;
     req.profile.salt = undefined;
     next();
