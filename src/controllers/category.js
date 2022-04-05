@@ -24,6 +24,7 @@ export const list = async (req, res) => { // get all categories
   }
 }
 export const read = async (req, res) => { // get all items from cate
+  //lấy theo cate với populate và req.quẻry 
   try {
     const category = await Category.findOne({ slug: req.params.slug }).exec();
     const products = await Product.find({ category: category }).populate('category').select('-category').exec();
@@ -32,6 +33,16 @@ export const read = async (req, res) => { // get all items from cate
   } catch (error) {
     res.status(400).json({
       message: "List không thành công"
+    })
+  }
+}
+export const get = async (req, res) => { // get a product
+  try {
+    const category = await Category.findOne({ slug: req.params.slug }).exec();
+    res.json(category);
+  } catch (error) {
+    res.status(400).json({
+      message: " không thành công"
     })
   }
 }
